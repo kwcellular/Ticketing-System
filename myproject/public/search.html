@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ticket System</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <!-- Header - begin -->
+    <section class="hero is-dark is-bold is-small">
+        <!-- Hero head: will stick at the top -->
+        <div class="hero-head">
+            <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item">
+                        <img src="assets/images/logos/XT-icono-gradiente-tamNormal.png" alt="Logo">
+                    </a>
+                </div>
+                <div class="navbar-end">
+                    <span class="navbar-item">
+                        <a class="button is-dark is-inverted" id="log-out-button">
+                            <span id="user-name-log-out">Log out</span>
+                            <span class="icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                            </span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+            </nav>
+        </div>
+        
+        <!-- Hero content: will be in the middle -->
+        <div class="hero-body">
+            <div class="container has-text-centered">
+            <h1 class="title">
+                KW Cellular
+            </h1>
+            <h2 class="subtitle">
+                Ticket System
+            </h2>
+            </div>
+        </div>
+        
+        <!-- Hero footer: will stick at the bottom of the hero -->
+        <div class="hero-foot">
+            <nav class="tabs is-boxed is-fullwidth">
+                <div class="container">
+                    <ul>
+                        <li id="create-ticket-list">
+                            <a href="index.html" class="subtitle">Create</a>
+                        </li>
+                        <li class="is-active" id="search-tickets-list">
+                            <a  href="#" class="subtitle">Search</a>
+                        </li>
+                        <li id="results-tickets-list">
+                            <a href="#" class="subtitle">Ticket</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+    <!-- Header - end -->
+
+    <!-- Separator begin -->
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <!-- Separator end-->
+
+    <!-- Search box - begin -->
+    <div class="container" id="search-tickets-container">
+        <div class="box">
+            <div class="minimize-search-tickets-click columns">
+                <div class="column is-11 has-text-left"><h2 class="subtitle">Search by ticket number or phone number</h2></div>
+                <div class="column is-1"><i id="search-tickets-svg" class="fas fa-plus-circle"></i></div>
+            </div>
+
+            <div class="minimize-search-tickets">
+                <div class="columns">
+                    <div class="column is-6">
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                              <input class="input" id="search-number-input" type="text" placeholder="Customer's phone number">
+                            </div>
+                            <div class="control">
+                              <a class="button is-dark" id="search-number-button">
+                                Search
+                              </a>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="column is-6">
+                        <div class="field has-addons has-addons-right">
+                            <div class="control is-expanded">
+                              <input class="input" id="search-ticket-input" type="text" placeholder="Ticket's last digits">
+                            </div>
+                            <div class="control">
+                              <a class="button is-dark" id="search-ticket-button">
+                                Search
+                              </a>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search box end-->
+
+    <!-- Separator begin -->
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <!-- Separator end-->
+
+    <!-- Recent Tickets - begin -->
+    <div class="container" id="recent-tickets-container">
+        <div class="box">
+            <div class="minimize-recent-tickets-click columns">
+                <div class="column is-11 has-text-left"><h2 id="search-text" class="subtitle">50 most recent tickets</h2></div>
+                <div class="column is-1"><i id="recent-tickets-svg" class="fas fa-minus-circle"></i></div>
+            </div>
+
+            <div class="minimize-recent-tickets table-container">
+                <table class="table is-bordered is-striped is-hoverable is-fullwidth table-container">
+                    <thead>
+                        <tr>
+                            <th>Ticket</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Equipment</th>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Closed</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="buttons has-addons is-right">
+                <a href="javascript:window.location.href='search.html'" class="button is-info" id="reload-button">
+                    Reload
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <!-- Recent Tickets - end -->
+
+    <!-- Separator begin -->
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <!-- Separator ends -->
+
+    <!-- ticketToView - begin -->
+
+    <div class="container" id="selected-ticket-container">
+<div class="columns">
+<div class="column">
+                            <button class="button is-link" id="chej">Print</button>
+                            
+                        </div>
+						<div class="column">
+                            <button class="button is-link" id="prtlabel">Print Label</button>
+                            
+                        </div>
+					
+</div>
+            <div class="columns">
+			
+
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Location</label>
+                        <div class="control">
+                            <input class="input" id="location-select" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Ticket Number</label>
+                        <div class="control">
+                            <input class="input" id="ticket-number" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Created by</label>
+                        <div class="control">
+                            <input disabled class="input" id="user-name-ticket" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Date</label>
+                        <div class="control">
+                            <input class="input" id="ticket-date" type="text" placeholder="Today">
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="box">
+                    <div class="minimize-cust-data-click columns">
+                        <div class="column is-11 has-text-left"><h2 class="subtitle">Customer's data</h2></div>
+                        <div class="column is-1"><i id="cust-data-svg" class="fas fa-minus-circle has-text-right"></i></div>
+                    </div>
+                
+    
+                <div class="minimize-cust-data">
+                    <div class="columns">
+            
+                        <div class="column is-4">
+                            <div class="field">
+                                <label class="label">Name</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Name" id="cust-name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-8">
+                            <div class="field">
+                                <label class="label">Last name</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Last name" id="cust-last-name">
+                                </div>
+                            </div>
+                        </div>
+            
+                    </div>
+            
+                    <div class="columns">
+            
+                        <div class="column is-4">
+                            <div class="field">
+                                <label class="label">Cellphone number</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="tel" placeholder="Ideally, with WhatsApp" id="cellphone-number">
+                                    <span class="icon is-small is-left">
+                                    <i class="fab fa-whatsapp"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-8">
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="email" placeholder="email@test.com" id="email">
+                                    <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+            
+                    </div>
+            
+                    <div class="columns">
+            
+                        <div class="column is-4">
+                            <div class="field">
+                                <label class="label">Zip Code</label>
+                                <div class="control">
+                                    <input class="input" type="number" placeholder="123456" id="zip-code">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-8">
+                            <div class="field">
+                                <label class="label">Preferred contact methods</label>
+                                <div class="control">
+                                    <label class="checkbox">
+                                    <input disabled id="contact-whats" type="checkbox" name="preferred-contact-method" value="whatsapp" >
+                                    WhatsApp
+                                    </label>
+                                    <label class="checkbox">
+                                    <input disabled id="contact-call"   type="checkbox" name="preferred-contact-method" value="call" >
+                                    Phone call
+                                    </label>
+                                    <label class="checkbox">
+                                    <input disabled id="contact-email" type="checkbox" name="preferred-contact-method" value="email">
+                                    Email
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+            
+                    </div>
+    
+                </div>
+    
+            </div>
+    
+            <!-- Separator begin -->
+            <section class="columns">
+                <div class="column"></div>
+            </section>
+            <!-- Separator ends -->
+    
+            <div class="container box">
+                <div class="minimize-equipment-data-click columns">
+                    <div class="column is-11 has-text-left"><h2 class="subtitle">Equipment data</h2></div>
+                    <div class="column is-1"><i  id="equipment-data-svg" class="fas fa-minus-circle minimize"></i></div>
+                </div>
+    
+                <div class="minimize-equipment-data">
+                    <div class="columns">
+    
+                        <div class="column is-6">
+                            <div class="field">
+                                <label class="label">Type of equipment</label>
+                                <div class="control is-expanded">
+                                    <div class="select is-fullwidth">
+                                    <select id="equipment-type">
+                                        <!-- These options have to be manually set in the HTML -->
+                                        <option disabled selected>Choose an option</option>
+                                        <option data-equipment="cellphone">Cellphone</option>
+                                        <option data-equipment="laptop">Laptop</option>
+                                        <option data-equipment="tablet">Tablet</option>
+                                        <option data-equipment="desktop">Desktop</option>
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-6">
+                            <div class="field">
+                                <label class="label">Brand</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Equipment brand" id="equipment-brand">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="columns">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Model</label>
+                            <div class="control">
+                                <input class="input" type="text" id="equipment-model" placeholder="Sometimes it's on the bottom case or under the battery">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Serial Number</label>
+                            <div class="control">
+                                <input class="input" type="text" id="equipment-serial-number" placeholder="It's not always easy to find!">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+    
+                    <div class="columns">
+    
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Characteristics</label>
+                                <div class="control">
+                                    <input class="input" type="text" id="equipment-characteristics" placeholder="Color, stickers, bumps, scratches, loose keys, damaged displays, squeaky hinges, etc...">
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="columns">
+    
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <div class="control">
+                                    <input class="input" type="text"  id="equipment-accesories" placeholder="Device ">
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="columns">
+    
+                        <div class="column">
+                            <div class="field">
+                                <label class="label">Reason for visit</label>
+                                <div class="control">
+                                    <textarea class="textarea" id="equipment-reason" placeholder="Be as explicit as possible, we'd rather have extra data than be lacking data"></textarea>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+            
+        <div class="container box">
+            <h2 class="subtitle">Notes</h2>
+
+            <div id="created-ticket-notes-container">
+                <!--TESTING STARTED - Only here to understand how to build this programmatically 
+                <div class="columns">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Tipo de Nota:</label>
+                            <div class="control">
+                                <label class="radio">
+                                <input type="radio" name="question-">
+                                Nota interna
+                                </label>
+                                <label class="radio">
+                                <input type="radio" name="question-">
+                                Diagnóstico
+                                </label>
+                                <label class="radio">
+                                <input type="radio" name="question-">
+                                Cotización
+                                </label>
+                                <label class="radio">
+                                <input type="radio" name="question-">
+                                Comunicación con cliente
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-2">
+                        <div class="field">
+                            <label class="label">Creada por</label>
+                            <div class="control">
+                                <input disabled class="input" id="user-name-note" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <div class="field">
+                            <label class="label">Date</label>
+                            <div class="control">
+                                <input id="new-ticket-date-now" class="input" type="text" placeholder="Hoy (dinámico)">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="columns">
+
+                    <div class="column">
+                        <div class="field">
+                            <div class="control">
+                                <textarea id="ticket-text-" class="textarea" placeholder="Cualquier interacción con el equipo o cliente debe de ser registrada aquí SIN EXCEPCIÓN.&#10;Recuerda ser lo más claro y explícito posible, preferible de más, no de menos.&#10;Si envias archivos a cliente, debes poner enlaces a Google Drive con los archivos enviados."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                TESTING FINISHED-->
+            </div>
+            
+            <div class="columns">
+
+                <div class="column is-8">
+                    <p id="error-text-note" class="error-text is-invisible has-text-right has-text-danger has-text-weight-light">Error: Don't leave fields empty.</p>
+                </div>
+
+                <div class="column is-4">
+                    <div class="field is-grouped is-grouped-right">
+                        <div class="control">
+                            <button id="add-new-note-button" class="button is-link">Add new note</button>
+                        </div>
+                        <div class="control">
+                            <button id="save-new-note-button" class="button is-link">Save note</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+            <div class="container box">
+                <h2 class="subtitle">Close ticket</h2>
+
+                
+
+                <hr>
+
+                <div class="columns">
+
+                    <div class="column is-1">
+                        <div class="field">
+                            <label class="label">Delivered</label>
+                            <div class="control has-text-centered">
+                                <label class="checkbox">
+                                <input  id="deliver-completed-checkbox" type="checkbox" name="deliver-completed" value="deliver-completed" >
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-2 deliver-section">
+                        <div class="field">
+                            <label class="label">Delivered by</label>
+                            <div class="control">
+                                <input disabled class="input" id="user-name-deliver" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-3 deliver-section">
+                        <div class="field">
+                            <label class="label">Delivery date</label>
+                            <div class="control">
+                                <input disabled id="deliver-completed-date" class="input" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-2 deliver-section">
+                        <p id="error-text-deliver" class="error-text is-invisible has-text-right has-text-danger has-text-weight-light">Error: Don't leave fields empty.</p>
+                    </div>
+
+                    <div class="column is-1 deliver-section deliver-section-buttons">
+                        <div class="field has-text-centered">
+                            <label class="label">Save</label>
+                            <a id="deliver-completed-save-button" class="button">
+                            <span class="icon has-text-success">
+                                <i class="fas fa-check fa-lg"></i>
+                            </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="column is-1 deliver-section deliver-section-buttons">
+                        <div class="field has-text-centered">
+                            <label class="label">Delete</label>
+                            <a id="deliver-completed-cancel-button" class="button">
+                            <span class="icon has-text-danger">
+                                <i class="fas fa-times fa-lg"></i>
+                            </span>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="columns"><div class="column is-12"></div></div>
+
+            </div>
+    </div>
+
+    <!-- ticketToView - end -->
+
+    <!-- Modal - begin -->
+
+  <div class="modal" id="modal-ticket">
+        <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Confirm ticket</p>
+                </header>
+                <section class="modal-card-body">
+                    <div id="print-view-ticket">
+                        <!-- ALL THIS DATA WILL BE PRINTED, SET YOUR OWN VALUES -->
+                        <!-- Ticket Data - Business -->
+                        <div class="columns">
+                            <div class="column">
+                                <h2 class="subtitle">KW Cellular</h2>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <p>Phone Number: 123 - 456 - 789</p>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <p>WhatsApp: 123 - 456 - 789</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Ticket Data - Customer
+                        <div class="is-divider" data-content="FOLIO"></div> -->
+                        <hr>
+                        <div class="columns">
+                            <div class="column">
+                                <p class="is-size-3"><strong>Ticket number: </strong><span id="print-view-ticket-num"></span></p>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Date: </strong><span id="print-view-ticket-date"></span></p>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Customer: </strong><span id="print-view-ticket-cust"></span></p>
+                            </div>
+
+                            <div class="column is-half"></div>
+                        </div>
+                        
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Phone: </strong><span id="print-view-ticket-ph"></span></p>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+                        
+
+                        <!-- Ticket Data - Equipment
+                        <div class="is-divider" data-content="EQUIPO"></div>  -->
+                        <hr>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Equipment: </strong><span id="print-view-ticket-brandmodel"></span></p>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Serial Number: </strong><span id="print-view-ticket-serial"></span></p>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Characteristics: </strong><span id="print-view-ticket-characteristics"></span></p>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Password: </strong><span id="print-view-ticket-accesories"></span></p>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Reason to visit: </strong><span id="print-view-ticket-reason"></span></p>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+
+                        <!-- Ticket Data - Customer agrees
+                        <div class="is-divider" data-content="EQUIPO"></div> -->
+                        <div class="columns">
+                            <div class="column">
+                                <p><i>I agree with the information above.</i></p>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+                        <br>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Name: </strong><span> ___________________________________</span></p>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Signature: </strong><span></span></p>
+                            </div>
+                        </div>
+                        <br>
+
+                        <!-- Ticket Data - ToS
+                        <div class="is-divider" data-content="CONDICIONES"></div> -->
+                        <hr>
+                        <div class="columns">
+                            <div class="column">
+                                <p><strong>Terms of Service</strong></p>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <ul>
+                                    <li>- Consequat nulla duis amet irure ut non veniam cillum sint sit mollit nisi proident. -</li>
+                                    <li>- Fugiat nostrud nisi est incididunt. -</li>
+                                    <li>- Dolor ea dolore exercitation amet incididunt in elit cupidatat mollit ullamco enim culpa aute deserunt. -</li>
+                                    <li>- Occaecat nulla in nulla cupidatat. -</li>
+                                    <li>- Commodo amet reprehenderit Lorem et ullamco. -</li>
+                                    <li>- Incididunt adipisicing eiusmod consequat sint do nulla tempor ut ex ex minim est aliqua. -</li>
+                                    <li>- Pariatur proident enim pariatur sint et officia consequat ut. -</li>
+                                </ul>
+                            </div>
+                            <div class="column is-half"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column"></div>
+                        </div>
+                        <div class="columns">
+                            <div class="column"></div>
+                        </div>
+
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <div class="field is-grouped is-grouped-right">
+                        <div class="control">
+                            <button class="button" id="print-ticket-button">Print</button>
+							
+                            <a class="button is-link" id="close">Close</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+   <!-- Modal - end -->
+   
+   <!-- Modal - begin -->
+   <div class="modal" id="modal-label">
+        <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Confirm ticket</p>
+                </header>
+                <section class="modal-card-body">
+                    <div id="print-view-label">
+                        <!-- ALL THIS DATA WILL BE PRINTED, SET YOUR OWN VALUES -->
+                        <!-- Ticket Data - Business -->
+                      
+                       
+                        <!-- Ticket Data - Customer
+                        <div class="is-divider" data-content="FOLIO"></div> -->
+                        
+                            
+                                <p>T:<span id="print-view-label-num"></span></p>
+                          
+                            
+               
+                        
+                            
+                   
+                            
+								
+                        
+                        
+                           
+                                <p><span id="print-view-label-cust"></span></p>
+                            
+
+                         
+                        
+                        
+                        
+                            
+                                <p><span id="print-view-label-ph"></span></p>
+                            
+                           
+                        
+
+                        <!-- Ticket Data - Equipment
+                        <div class="is-divider" data-content="EQUIPO"></div>  -->
+             
+                        
+                        
+                            
+                                <p><span id="print-view-label-characteristics"></span></p>
+                           
+                            
+                       
+                        
+                                <p>P:<span id="print-view-label-accesories"></span></p>
+                            
+                        
+                                <p>R:<span id="print-view-label-reason"></span></p>
+                            
+                        <!-- Ticket Data - Customer agrees
+                        <div class="is-divider" data-content="EQUIPO"></div> -->
+                        
+                        
+                       
+
+                        <!-- Ticket Data - ToS
+                        <div class="is-divider" data-content="CONDICIONES"></div> -->
+                        
+                        
+
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <div class="field is-grouped is-grouped-right">
+                        <div class="control">
+                            <button class="button" id="print-label-button">Print</button>
+							
+                            <a class="button is-link" id="closelabel">Close</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    <!-- Modal - end -->
+
+    <!-- Modal - begin -->
+
+    <div class="modal">
+        <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Confirm ticket</p>
+                </header>
+                <section class="modal-card-body" id="print-view-ticket">
+                    <!-- Content ... -->
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- Modal - end -->
+	
+
+    <!-- Separator begin -->
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <!-- Separator ends -->
+
+    <!-- JS Files -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/es-us.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+    <script src="./assets/javascript/.env/firebase.config.js"></script>
+    <script src="./assets/javascript/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ticket System</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <!-- Header - begin -->
+    <section class="hero is-dark is-bold is-small">
+        <!-- Hero head: will stick at the top -->
+        <div class="hero-head">
+            <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item">
+                        <img src="assets/images/logos/XT-icono-gradiente-tamNormal.png" alt="Logo">
+                    </a>
+                </div>
+                <div class="navbar-menu is-active">
+                    <div class="navbar-end">
+                        <span class="navbar-item">
+                            <a class="button is-dark is-inverted" id="log-out-button">
+                                <span id="user-name-log-out">Log out</span>
+                                <span class="icon">
+                                <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </nav>
+        </div>
+        
+        <!-- Hero content: will be in the middle -->
+        <div class="hero-body">
+            <div class="container has-text-centered">
+            <h1 class="title">
+                KW Cellular
+            </h1>
+            <h2 class="subtitle">
+                Ticket System
+            </h2>
+            </div>
+        </div>
+        
+        <!-- Hero footer: will stick at the bottom of the hero -->
+        <div class="hero-foot">
+            <nav class="tabs is-boxed is-fullwidth">
+                <div class="container">
+                    <ul>
+                        <li class="is-active" id="create-note-list">
+                            <a href="#" class="subtitle">Create</a>
+                        </li>
+                        <li id="search-notes-list">
+                            <a href="search.html" class="subtitle">Search</a>
+                        </li>
+                        <li id="results-notes-list">
+                            <a href="#" class="subtitle">Ticket</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
+    <!-- Header - end -->
+
+    <!-- Separator begin -->
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <!-- Separator end-->
+
+    <!-- Create new ticket - begin -->
+    <div class="container" id="create-ticket-container">
+
+        <div class="box" id="validate-customer-exists">
+            <div class="minimize-cust-data-click columns">
+                <div class="column is-12 has-text-left"><h2 class="subtitle">Check if the customer exists</h2></div>
+            </div>
+            
+            <div class="columns">
+                <div class="column is-6">
+                    <div class="field is-grouped">
+                        <div class="control is-expanded has-icons-left">
+                            <input class="input" type="tel" placeholder="Customer's cellphone number" id="cellphone-number-validate">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-mobile-alt"></i>
+                            </span>
+                            <p id="empty-phone-validation" class="help is-danger"></p>
+                        </div>
+                        <a class="button is-dark" id="validate-customer-button">Check</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box" id="customer-information">
+            <div class="minimize-cust-data-click columns">
+                <div class="column is-11 has-text-left"><h2 class="subtitle">Customer Data</h2></div>
+                <div class="column is-1"><i id="cust-data-svg" class="fas fa-minus-circle has-text-right"></i></div>
+            </div>
+            
+
+            <div class="minimize-cust-data">
+                <div class="columns">
+        
+                    <div class="column is-4">
+                        <div class="field">
+                            <label class="label">Cellphone Number</label>
+                            <div class="control has-icons-left">
+                                <input disabled class="input" type="tel" placeholder="Idealmente, con WhatsApp" id="cellphone-number">
+                                <span class="icon is-small is-left">
+                                <i class="fab fa-whatsapp"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="field">
+                            <label class="label">Name</label>
+                            <div class="control">
+                                <input disabled class="input" type="text" placeholder="Name" id="cust-name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-5">
+                        <div class="field">
+                            <label class="label">Last Name</label>
+                            <div class="control">
+                                <input disabled class="input" type="text" placeholder="Last Name" id="cust-last-name">
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+        
+                <div class="columns">
+        
+                    <div class="column is-4">
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left">
+                                <input disabled class="input" type="email" placeholder="email@test.com" id="email">
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-6">
+                        <div class="field">
+                            <label class="label">Preferred contact methods</label>
+                            <div class="control">
+                                <label class="checkbox">
+                                <input disabled id="contact-whats" type="checkbox" name="preferred-contact-method" value="whatsapp" >
+                                WhatsApp
+                                </label>
+                                <label class="checkbox">
+                                <input disabled id="contact-call"   type="checkbox" name="preferred-contact-method" value="call" >
+                                Phone call
+                                </label>
+                                <label class="checkbox">
+                                <input disabled id="contact-email" type="checkbox" name="preferred-contact-method" value="email">
+                                Email
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-2">
+                        <div class="field">
+                            <label class="label">Zip Code</label>
+                            <div class="control">
+                                <input disabled class="input" type="number" placeholder="123456" id="zip-code">
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+        
+                <div class="columns">
+
+                    <div class="column is-6">
+                        <p id="error-text-customer" class="error-text is-invisible has-text-right has-text-danger has-text-weight-light">Error: Don't leave fields empty.</p>
+                    </div>
+
+                    <div class="column is-6">
+                        <div class="field is-grouped is-grouped-right">
+                            <p class="control">
+                                <a class="button is-success" id="confirm-customer-button">Confirm Data</a>
+                            </p>
+                            <p class="control">
+                                <a class="button is-success" id="save-exist-customer-button">Save Data</a>
+                            </p>
+                            <p class="control">
+                                <a class="button is-success" id="save-new-customer-button">Save Customer</a>
+                            </p>
+                            <p class="control">
+                                <a class="button is-warning" id="modify-customer-button">Modify Data</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Separator begin -->
+        <section class="columns">
+            <div class="column"></div>
+        </section>
+        <!-- Separator ends -->
+
+        <div class="container" id="ticket-data">
+            <div class="columns">
+
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Location</label>
+                        <div class="control is-expanded">
+                            <div class="select is-fullwidth">
+                            <select id="location-select">
+                                <!-- These options have to be manually set in the HTML -->
+                                <option disabled selected>Select a location</option>
+                                <option data-location="downtown">Cambridge</option>
+                                <option data-location="midtown">Guelph</option>
+                                <option data-location="uptown">Kitchener</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Ticket Number</label>
+                        <div class="control">
+                            <input disabled class="input" id="ticket-number" type="text" placeholder="Choose a location">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Created by</label>
+                        <div class="control">
+                            <input disabled class="input" id="user-name-ticket" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Date</label>
+                        <div class="control">
+                            <input class="input" id="new-ticket-date-now" type="text">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container box" id="equipment-information">
+            <div class="minimize-equipment-data-click columns">
+                <div class="column is-11 has-text-left"><h2 class="subtitle">Equipment Data</h2></div>
+                <div class="column is-1"><i  id="equipment-data-svg" class="fas fa-minus-circle minimize"></i></div>
+            </div>
+
+            <div class="minimize-equipment-data">
+                <div class="columns">
+
+                    <div class="column is-6">
+                        <div class="field">
+                            <label class="label">Type of equipment</label>
+                            <div class="control is-expanded">
+                                <div class="select is-fullwidth">
+                                <select id="equipment-type">
+                                    <!-- These options have to be manually set in the HTML -->
+                                    <option disabled selected>Choose an option</option>
+                                    <option data-equipment="cellphone">Cellphone</option>
+                                    <option data-equipment="laptop">Laptop</option>
+                                    <option data-equipment="tablet">Tablet</option>
+                                    <option data-equipment="desktop">Desktop</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div class="field">
+                            <label class="label">Brand</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Equipment brand" id="equipment-brand">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="columns">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Model</label>
+                            <div class="control">
+                                <input class="input" type="text" id="equipment-model" placeholder="Sometimes it's on the bottom case or under the battery">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Serial Number</label>
+                            <div class="control">
+                                <input class="input" type="text" id="equipment-serial-number" placeholder="It's not always easy to find!">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="columns">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Condition</label>
+                            <div class="control">
+                                <select name="equipment-characteristics" id="equipment-characteristics" multiple>
+                                    <!-- These options have to be manually set in the HTML -->
+                                    <option disabled selected>Choose Options</option>
+                                    <option data-equipment="screen">Broken Screen</option>
+									<option data-equipment="screen">Bad Battery</option>
+									<option data-equipment="nopower">Diagnose</option>
+									<option data-equipment="nopower">Liquid Damaged</option>
+                                    <option data-equipment="cp">Broken Charging Port</option>
+                                    <option data-equipment="nopower">No Power</option>
+									<option data-equipment="nopower">No Network</option>
+									<option data-equipment="nopower">No Service</option>
+									<option data-equipment="nopower">Broken Back</option>
+									<option data-equipment="nopower">Broken Camera/Lens</option>
+									<option data-equipment="nopower">Broken Ear Speaker</option>
+									<option data-equipment="nopower">Broken HDMI Port</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="columns">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control">
+                                <input class="input" type="text"  id="equipment-accesories" placeholder="Device Password">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="columns">
+
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Reason for visit</label>
+                            <div class="control">
+                                <textarea class="textarea" id="equipment-reason" placeholder="Be as explicit as possible, we'd rather have extra data than be lacking data"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+
+            <div class="columns">
+
+                <div class="column is-9">
+                    <p id="error-text-ticket" class="error-text is-invisible has-text-right has-text-danger has-text-weight-light">Error: Please don't leave empty fields</p>
+                </div>
+
+                <div class="column is-3">
+                    <div class="field is-grouped is-grouped-right">
+                        <div class="control">
+                            <a class="button is-link" id="confirm-ticket-button">Confirm Ticket</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Create new ticket - end -->
+
+    <!-- Separator begin -->
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <section class="columns">
+        <div class="column"></div>
+    </section>
+    <!-- Separator end-->
+
+    <!-- Modal - begin -->
+
+    <div class="modal" id="modal-user-auth">
+        <div class="modal-background" id="modal-close-background" ></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title" id="modal-user-auth-title">Modal title</p>
+                    <button id="modal-close-button" class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body" id="modal-user-auth-body">
+                    <!-- Content ... -->
+                </section>
+            </div>
+        </div>
+
+    <!-- Modal - end -->
+
+    <!-- Modal - begin - TICKET TO BE PRINTED -->
+
+    <div class="modal" id="modal-ticket">
+        <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Confirm ticket</p>
+                </header>
+                <section class="modal-card-body">
+                    <div id="print-view-ticket">
+                        <!-- ALL THIS DATA WILL BE PRINTED, SET YOUR OWN VALUES -->
+                        <!-- ALL THIS DATA WILL BE PRINTED, SET YOUR OWN VALUES -->
+                        <!-- Ticket Data - Business -->
+                      
+                       
+                        <!-- Ticket Data - Customer
+                        <div class="is-divider" data-content="FOLIO"></div> -->
+                        
+                            
+                                <p>T:<span id="print-view-ticket-num"></span></p>
+                          
+                            
+               
+                        
+                            
+                   
+                            
+								
+                        
+                        
+                           
+                                <p><span id="print-view-ticket-cust"></span></p>
+                            
+
+                         
+                        
+                        
+                        
+                            
+                                <p><span id="print-view-ticket-ph"></span></p>
+                            
+                           
+                        
+
+                        <!-- Ticket Data - Equipment
+                        <div class="is-divider" data-content="EQUIPO"></div>  -->
+             
+                        
+                        
+                            
+                                <p><span id="print-view-ticket-characteristics"></span></p>
+                           
+                            
+                       
+                        
+                                <p>P:<span id="print-view-ticket-accesories"></span></p>
+                            
+                        
+                                <p>R:<span id="print-view-ticket-reason"></span></p>
+                            
+                        <!-- Ticket Data - Customer agrees
+                        <div class="is-divider" data-content="EQUIPO"></div> -->
+                        
+                        
+                       
+
+                        <!-- Ticket Data - ToS
+                        <div class="is-divider" data-content="CONDICIONES"></div> -->
+                        
+                        
+
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <div class="field is-grouped is-grouped-right">
+                        <div class="control">
+                            <button class="button" id="print-ticket-button">Print</button>
+                            <a class="button is-link" id="add-ticket-button">Save ticket</a>
+							<a class="button is-link" id="close">Close</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- Modal - end -->
+
+    <!-- JS Files -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/es-us.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+    <script src="./assets/javascript/.env/firebase.config.js"></script>
+    <script src="./assets/javascript/index.js"></script>
+</body>
+</html>
