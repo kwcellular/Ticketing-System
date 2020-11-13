@@ -285,13 +285,13 @@
                             <label class="label">Type of equipment</label>
                             <div class="control is-expanded">
                                 <div class="select is-fullwidth">
-                                <select id="equipment-type">
+                                <select name="category" id="category" onChange="changecat(this.value);">
                                     <!-- These options have to be manually set in the HTML -->
                                     <option disabled selected>Choose an option</option>
-                                    <option data-equipment="cellphone">Cellphone</option>
-                                    <option data-equipment="laptop">Laptop</option>
-                                    <option data-equipment="tablet">Tablet</option>
-                                    <option data-equipment="desktop">Desktop</option>
+									<option data-equipment="Cellphone" value="Cellphone">Cellphone</option>
+									<option data-equipment="Tablet"value="Tablet">Tablet</option>
+									<option data-equipment="Laptop" value="Laptop">Computer / Laptop</option>
+									<option data-equipment="Console" value="Console">Video Game Console</option>
                                 </select>
                                 </div>
                             </div>
@@ -300,9 +300,11 @@
                     <div class="column is-6">
                         <div class="field">
                             <label class="label">Brand</label>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="Equipment brand" id="equipment-brand">
-                            </div>
+                            <div class="select is-fullwidth">
+                                <select name="brand" id="brand" onChange="changemodel(this.value)">
+								<option value="" disabled selected>Select</option>
+								</select>
+                                </div>
                         </div>
                     </div>
                     
@@ -313,9 +315,12 @@
                     <div class="column">
                         <div class="field">
                             <label class="label">Model</label>
-                            <div class="control">
-                                <input class="input" type="text" id="equipment-model" placeholder="Sometimes it's on the bottom case or under the battery">
-                            </div>
+                            <div class="select is-fullwidth">
+                          <select name="model" id="model">
+    <option value="" disabled selected>Select</option>
+</select>   
+                          
+                                </div>
                         </div>
                     </div>
                     <div class="column">
@@ -333,23 +338,23 @@
 
                     <div class="column">
                         <div class="field">
-                            <label class="label">Condition</label>
-                            <div class="control">
-                                <select name="equipment-characteristics" id="equipment-characteristics" multiple>
+                            <label class="label">Condition And Issues</label>
+                            <div class="control condition">
+                                <select name="equipment-characteristics" id="equipment-characteristics" multiple size="13">
                                     <!-- These options have to be manually set in the HTML -->
                                     <option disabled selected>Choose Options</option>
                                     <option data-equipment="screen">Broken Screen</option>
 									<option data-equipment="screen">Bad Battery</option>
-									<option data-equipment="nopower">Diagnose</option>
-									<option data-equipment="nopower">Liquid Damaged</option>
+									<option data-equipment="diagnose">Diagnose</option>
+									<option data-equipment="liquid">Liquid Damaged</option>
                                     <option data-equipment="cp">Broken Charging Port</option>
                                     <option data-equipment="nopower">No Power</option>
-									<option data-equipment="nopower">No Network</option>
-									<option data-equipment="nopower">No Service</option>
-									<option data-equipment="nopower">Broken Back</option>
-									<option data-equipment="nopower">Broken Camera/Lens</option>
-									<option data-equipment="nopower">Broken Ear Speaker</option>
-									<option data-equipment="nopower">Broken HDMI Port</option>
+									<option data-equipment="network">No Network</option>
+									<option data-equipment="FRP">FRP / Password Removal</option>
+									<option data-equipment="brback">Broken Back</option>
+									<option data-equipment="camerar">Broken Camera/Lens</option>
+									<option data-equipment="earspeaker">Broken Ear Speaker</option>
+									<option data-equipment="hdmi">Broken HDMI Port</option>
                                 </select>
                             </div>
                         </div>

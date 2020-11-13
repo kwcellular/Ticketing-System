@@ -1,10 +1,62 @@
+		var brandsByCategory = {
+    Laptop: ["Select","HP", "Dell", "MacBook", "Other"],
+    Cellphone: ["Select","iPhone", "Samsung", "Huawei","LG","Google","Other"],
+	Tablet:["Select","iPad","SamsungTab","MediaPad","Amazon","Other"],
+    Console: ["Select","Sony", "Nintendo", "Microsoft","Other"]
+}
+var modelsByBrand = {
+    iPhone: ["Select","6","6 Plus","6S","6S Plus","7","7 Plus","8", "8 Plus", "X","XR","XS","XS Max","11","Other"],
+    Sony: ["Select","PS4", "PS4 Pro","PS4 Slim"],
+    HP: ["Select","Other"],
+    Dell: ["Select","Other"],
+    MacBook: ["Select","Air","Pro","Other"],
+    Samsung: ["Select","A50","A70","A51","A71","S8","S8+","S9","S9+","S10","S10+","S20","S20+","S20 ULTRA","NOTE 8","NOTE 9","NOTE 10","NOTE 10+","OTHER"],
+    Huawei: ["Select","P20","P20 PRO","P30","P30 LITE","P30 PRO"],
+    Nintendo:["Select","Switch","Switch Lite","3ds"],
+    Microsoft: ["Select","XBOX ONE","XBOX ONE S","XBOX ONE X"],
+    Other: ["Select","Other"],
+	LG: ["G6","G7 ONE","G7 THINQ","G8","G8X THINQ","Other"],
+	Google: ["Pixel 2","Pixel 2 XL","Pixel 3","Pixel 3 XL","Pixel 4","Pixel 4 XL","Pixel 4a","Pixel 4a XL"],
+	MediaPad: ["T3","T5"],
+	Amazon: ["Select","Fire HD"],
+	iPad:["Select","1/2 Gen","3/4 Gen","5 Gen","6 Gen","7 Gen","8 Gen","Air 1","Air 2","Air 3","Mini 1/2","Mini 3","Mini 4","Mini 5","Pro 9.7","Pro 10.5","Pro 11","Pro 12.9"],
+	SamsungTab: ["Select","T560","T380"]
+}
+
+
+function changecat(value) {
+    if (value.length == 0) document.getElementById("brand").innerHTML = "<option></option>";
+    else {
+        var catOptions = "";
+        for (categoryId in brandsByCategory[value]) {
+            catOptions += "<option>" + brandsByCategory[value][categoryId] + "</option>";
+        }
+        document.getElementById("brand").innerHTML = catOptions;
+    }
+}
+
+function changemodel(value) {
+    if (value.length == 0) document.getElementById("model").innerHTML = "<option></option>";
+	if(value == 'Other') 
+	{
+		$("#model").replaceWith('<input class = "input" placeholder="Enter full model" id="altmodel" name="altmodel"></input>');
+	}
+	else {
+        var catOptions = "";
+		$("#altmodel").replaceWith('<select name="model" id="model"><option value="" disabled selected>Select</option></select>');
+		for (categoryId in modelsByBrand[value]) {
+            catOptions += "<option>" + modelsByBrand[value][categoryId] + "</option>";
+        }
+        document.getElementById("model").innerHTML = catOptions;
+    }
+}
 $(document).ready(function (){
 // --------------------- ON LOAD EVENTS - START ---------------------
     // Initialize Firebase
     // 'config' is being imported through the HTML's script tag (./.env/firebase.config.js)
     // For your own development, you need to change the 'example.env' folder to '.env' and change the values inside to reflect the values you get from Firebase
     firebase.initializeApp(config);
-    var database = firebase.database();
+    var database = firebase	.database();
 
     //Verify if the user is logged in
     checkLoginStatus();
@@ -22,6 +74,7 @@ $(document).ready(function (){
 //-----------------
 // --------------------- GLOBAL VARIABLES - START ---------------------
     //GLOBAL VARIABLES
+	
     var startDate = moment('1990-04-26T10:15:00'); // Patch to fix firebase's ascending order only problem
     var nowDate;
     var descOrder;
@@ -98,9 +151,9 @@ $(document).ready(function (){
     var ticketNumSelector = $('#ticket-number');
     var dateSelector = $('#new-ticket-date-now');
 
-    var eqTypeSelector = $('#equipment-type');
-    var eqBrandSelector = $('#equipment-brand');
-    var eqModelSelector = $('#equipment-model');
+    var eqTypeSelector = $('#category');
+    var eqBrandSelector = $('#brand');
+    var eqModelSelector;
     var eqSerialNumSelector = $('#equipment-serial-number');
     var characteristicsSelector = $('#equipment-characteristics');
     var accesoriesSelector = $('#equipment-accesories');
@@ -169,6 +222,7 @@ $(document).ready(function (){
             }
         });
     }
+	
 
     // Check if user is authorized to actually use the system
     // Was added because anyone can signup using Google auth, but if they're not on the DB they can't do anything in the system
@@ -438,8 +492,16 @@ $(document).ready(function (){
         date = dateSelector.val().trim();
 
         eqType = eqTypeSelector.val();
-        eqBrand = eqBrandSelector.val().trim();
-        eqModel = eqModelSelector.val().trim();
+        eqBrand = eqBrandSelector.val();
+		if(eqBrand == 'Other'){
+			eqModelSelector = $('#altmodel');
+			eqModel = eqModelSelector.val().trim();
+		}
+		else {
+			eqModelSelector = $('#model');
+			eqModel = eqModelSelector.val();
+		}
+		console.log(eqModel);
         eqSerialNum = eqSerialNumSelector.val().trim();
         characteristics = characteristicsSelector.val();
         accesories = accesoriesSelector.val().trim();
@@ -461,7 +523,7 @@ $(document).ready(function (){
         $('#print-view-ticket-num').text(fullTicketNum);
         $('#print-view-ticket-date').text(date);
         $('#print-view-ticket-cust').text(custName + ' '+custLastName);
-		$('#print-view-ticket-p1').text(cellNum);
+		$('#print-view-ticket-ph').text(cellNum);
         $('#print-view-ticket-brandmodel').text(eqBrand + eqModel);
         $('#print-view-ticket-serial').text(eqSerialNum);
         $('#print-view-ticket-characteristics').text(characteristics);
