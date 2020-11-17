@@ -302,17 +302,29 @@ $(document).ready(function (){
         newRow.attr('data-ticket-DBID', pOneTicketData.ticketID);
         newRow.attr('data-ticket-custDBID', pOneTicketData.custID);
         newRow.addClass('ticket');
-
+		var tdTicketCompleted = $("<td>");
+        if (pOneTicketData.deliverCompleted ) {
+            tdTicketCompleted.text('Yes');
+        } else {
+            tdTicketCompleted.text('No');
+        }
+		
+		if(pOneTicketData.deliverCompleted != true)
+		{
         var tdTicketNum = $("<td>");
         tdTicketNum.text(pOneTicketData.fullTicketNum);
         newRow.append(tdTicketNum);
+		
+		 var tdTicketLoc = $("<td>");
+        tdTicketLoc.text(pOneTicketData.location);
+        newRow.append(tdTicketLoc);
 
         var tdTicketDate= $("<td>");
         var sliceDate = pOneTicketData.date;
         tdTicketDate.text(sliceDate.slice(0, sliceDate.lastIndexOf("")));
         newRow.append(tdTicketDate);
 
-        var fulloneCustomerName = pOneTicketData.custName + ' ' + (pOneTicketData.custLastName).slice(0,1) + '.';
+        var fulloneCustomerName = pOneTicketData.custName + ' ' + (pOneTicketData.custLastName);
         var tdCustName = $("<td>");
         tdCustName.text(fulloneCustomerName);
         newRow.append(tdCustName);
@@ -329,18 +341,12 @@ $(document).ready(function (){
         tdEqModel.text(pOneTicketData.eqModel);
         newRow.append(tdEqModel);
 
-        var tdTicketCompleted = $("<td>");
-        if (pOneTicketData.deliverCompleted ) {
-            tdTicketCompleted.text('Yes');
-        } else {
-            tdTicketCompleted.text('No');
-        }
-        newRow.append(tdTicketCompleted);
+        //newRow.append(tdTicketCompleted);
 
-        var tdNotes = $("<td>");
-        tdNotes.text(pOneTicketData.internalNotesCounter-1);
-        newRow.append(tdNotes);
-
+        var tdIssues = $("<td>");
+        tdIssues.text(pOneTicketData.characteristics);
+        newRow.append(tdIssues);
+		}
         // Finally, append or prepend the whole row to the tablebody
         if (pOrder == 'prepend') {
             tableBody.prepend(newRow);

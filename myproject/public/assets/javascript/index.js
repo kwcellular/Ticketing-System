@@ -1,26 +1,26 @@
-		var brandsByCategory = {
+	var brandsByCategory = {
     Laptop: ["Select","HP", "Dell", "MacBook", "Other"],
     Cellphone: ["Select","iPhone", "Samsung", "Huawei","LG","Google","Other"],
 	Tablet:["Select","iPad","SamsungTab","MediaPad","Amazon","Other"],
-    Console: ["Select","Sony", "Nintendo", "Microsoft","Other"]
+    Console: ["Select","PlayStation", "Nintendo", "XBox","Other"]
 }
 var modelsByBrand = {
     iPhone: ["Select","6","6 Plus","6S","6S Plus","7","7 Plus","8", "8 Plus", "X","XR","XS","XS Max","11","Other"],
-    Sony: ["Select","PS4", "PS4 Pro","PS4 Slim"],
+    PlayStation: ["Select","PS4", "PS4 Pro","PS4 Slim"],
     HP: ["Select","Other"],
     Dell: ["Select","Other"],
     MacBook: ["Select","Air","Pro","Other"],
-    Samsung: ["Select","A50","A70","A51","A71","S8","S8+","S9","S9+","S10","S10+","S20","S20+","S20 ULTRA","NOTE 8","NOTE 9","NOTE 10","NOTE 10+","OTHER"],
+    Samsung: ["Select","A5 2017","A50","A51","A70","A71","S8","S8+","S9","S9+","S10","S10+","S20","S20+","S20 ULTRA","NOTE 8","NOTE 9","NOTE 10","NOTE 10+","Other"],
     Huawei: ["Select","P20","P20 PRO","P30","P30 LITE","P30 PRO"],
     Nintendo:["Select","Switch","Switch Lite","3ds"],
-    Microsoft: ["Select","XBOX ONE","XBOX ONE S","XBOX ONE X"],
+    XBox: ["Select","One","One S","One X"],
     Other: ["Select","Other"],
-	LG: ["G6","G7 ONE","G7 THINQ","G8","G8X THINQ","Other"],
-	Google: ["Pixel 2","Pixel 2 XL","Pixel 3","Pixel 3 XL","Pixel 4","Pixel 4 XL","Pixel 4a","Pixel 4a XL"],
-	MediaPad: ["T3","T5"],
+	LG: ["Select","G6","G7 ONE","G7 THINQ","G8","G8X THINQ","Other"],
+	Google: ["Select","Pixel","Pixel XL","Pixel 2","Pixel 2 XL","Pixel 3","Pixel 3 XL","Pixel 4","Pixel 4 XL","Pixel 4a","Pixel 4a XL"],
+	MediaPad: ["Select","T3","T5"],
 	Amazon: ["Select","Fire HD"],
-	iPad:["Select","1/2 Gen","3/4 Gen","5 Gen","6 Gen","7 Gen","8 Gen","Air 1","Air 2","Air 3","Mini 1/2","Mini 3","Mini 4","Mini 5","Pro 9.7","Pro 10.5","Pro 11","Pro 12.9"],
-	SamsungTab: ["Select","T560","T380"]
+	iPad:["Select","1/2 Gen","3/4 Gen","5 Gen","6 Gen","7 Gen","8 Gen","Air 1","Air 2","Air 3","Mini 1/2","Mini 3","Mini 4","Mini 5","Pro 9.7","Pro 10.5","Pro 11","Pro 12.9","Other"],
+	SamsungTab: ["Select","T560","T380","Other"]
 }
 
 
